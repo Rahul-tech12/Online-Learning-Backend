@@ -1,15 +1,13 @@
 # Stage 1: Build the application
-FROM maven:3.9.11-openjdk-21 AS build
+FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
 # Stage 2: Run the application
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
-# Using a wildcard to catch the generated jar file
 COPY --from=build /app/target/*.jar app.jar
-EXPOSE 8080
-# Render provides a $PORT variable, but Spring Boot 
-# will pick it up if we pass it as a system property
-ENTRYPOINT ["java", "-Dserver.port=${PORT:8080}", "-jar", "app.jar"]
+EXPOSE 8081
+# Use the PORT environment variable provided by Render
+ENTRYPOINT ["java", "-Dserver.port=${PORT}", "-jar", "app.jar"]
