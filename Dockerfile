@@ -1,11 +1,11 @@
 # Stage 1: Build the application
-FROM maven:3.8.5-openjdk-17 AS build
+FROM maven:3.9.11-openjdk-21 AS build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
 # Stage 2: Run the application
-FROM openjdk:17-jdk-slim
+FROM openjdk:21-jdk-slim
 WORKDIR /app
 # Using a wildcard to catch the generated jar file
 COPY --from=build /app/target/*.jar app.jar
