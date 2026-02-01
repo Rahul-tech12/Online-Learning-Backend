@@ -12,6 +12,7 @@ public interface CourseRepository extends JpaRepository<CourseEntity,Long> {
 
     List<CourseEntity> findByPublishedTrue();
 
+
     @Query("""
             
             SELECT new com.project.learning.Dto.Response.EnrollmentResponse(

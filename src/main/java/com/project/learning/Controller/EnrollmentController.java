@@ -21,14 +21,14 @@ public class EnrollmentController {
     }
 
     @PostMapping("/{courseId}")
-    @PreAuthorize("hasRole('STUDENT')")
+    @PreAuthorize("hasAuthority('ROLE_STUDENT')")
     public ResponseEntity<String> enrollCourse(Authentication authentication, @PathVariable Long courseId){
         String response=enrollmentService.enroll(authentication.getName(),courseId);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/my-courses")
-    @PreAuthorize("hasRole('STUDENT')")
+    @PreAuthorize("hasAuthority('ROLE_STUDENT')")
     public ResponseEntity<List<CourseResponse>> getEnrolledCourses(Authentication authentication){
         List<CourseResponse> courses=enrollmentService.getEnrolledCourses(authentication.getName());
         return ResponseEntity.ok(courses);

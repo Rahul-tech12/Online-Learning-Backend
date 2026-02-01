@@ -8,6 +8,7 @@ import com.project.learning.Repository.CourseRepository;
 import com.project.learning.Repository.EnrollmentRepository;
 import com.project.learning.Repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,8 +25,8 @@ public class EnrollmentService {
         this.userRepository = userRepository;
     }
 
-    public String enroll(String username, Long courseId){
-        UserEntity user=userRepository.findByEmail(username)
+    public String enroll(String email, Long courseId){
+        UserEntity user=userRepository.findByEmail(email)
                 .orElseThrow(()->new RuntimeException("User not found"));
         CourseEntity course=courseRepository.findById(courseId)
                 .orElseThrow(()->new RuntimeException("Course not found"));
@@ -39,8 +40,9 @@ public class EnrollmentService {
         return user.getUsername()+" enrolled in course "+course.getTitle()+"successfully";
     }
 
-    public List<CourseResponse> getEnrolledCourses(String username){
-        UserEntity user=userRepository.findByEmail(username)
+    @Transactional(readOnly=true)
+    public List<CourseResponse> getEnrolledCourses(String email){
+        UserEntity user=userRepository.findByEmail(email)
                 .orElseThrow(()->new RuntimeException("User not found"));
         return enrollmentRepository.findByUser_Id(user.getId())
                 .stream()

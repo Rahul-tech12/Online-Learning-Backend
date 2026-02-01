@@ -27,6 +27,7 @@ public class UserEntity implements UserDetails {
     private String bio;
     private String profileImage;
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     public UserEntity(){
@@ -91,6 +92,6 @@ public class UserEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
-        return List.of(new SimpleGrantedAuthority("ROLE_"+role));
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 }

@@ -22,7 +22,7 @@ public class AdminController {
     public ResponseEntity<?> grantInstructor(@PathVariable Long id){
         UserEntity entity=userRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("User not found"));
-        entity.setRole(Role.INSTRUCTOR);
+        entity.setRole(Role.ROLE_INSTRUCTOR);
         userRepository.save(entity);
         return ResponseEntity.ok("Instructor role granted!");
     }

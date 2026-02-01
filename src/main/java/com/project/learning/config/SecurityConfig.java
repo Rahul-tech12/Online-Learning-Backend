@@ -35,14 +35,14 @@ public class SecurityConfig {
                         auth
                                 .requestMatchers(HttpMethod.GET,"/*/image").permitAll()
                                 .requestMatchers(HttpMethod.GET,"/courses","/courses/*/image").permitAll()
-                                .requestMatchers(HttpMethod.POST,"/auth/**").permitAll()
+                                .requestMatchers(HttpMethod.POST,"/auth/register","/auth/login").permitAll()
                                 .requestMatchers(
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**").permitAll()
                                 .requestMatchers("/enrollments/**").authenticated()
                                 .anyRequest().authenticated())
-                .addFilterAfter(jwtFilter,
+                .addFilterBefore(jwtFilter,
                         UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }

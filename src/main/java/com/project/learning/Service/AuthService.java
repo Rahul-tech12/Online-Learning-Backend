@@ -34,7 +34,7 @@ public class AuthService  {
         entity.setUsername(request.getUsername());
         entity.setEmail(request.getEmail());
         entity.setPassword(passwordEncoder.encode(request.getPassword()));
-        entity.setRole(Role.STUDENT);
+        entity.setRole(Role.ROLE_STUDENT);
         UserEntity savedUser=userRepository.save(entity);
         return "Username: "+savedUser.getUsername()+" registered successfully";
     }

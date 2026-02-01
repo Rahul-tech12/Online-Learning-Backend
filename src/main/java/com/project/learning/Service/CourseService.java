@@ -7,7 +7,9 @@ import com.project.learning.Entity.CourseEntity;
 import com.project.learning.Entity.CourseImage;
 import com.project.learning.Repository.CourseImageRepository;
 import com.project.learning.Repository.CourseRepository;
+import com.project.learning.Repository.EnrollmentRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -18,10 +20,12 @@ public class CourseService {
 
     public CourseRepository courseRepository;
     public CourseImageRepository courseImageRepository;
+    public EnrollmentRepository enrollmentRepository;
 
-    public CourseService(CourseRepository courseRepository, CourseImageRepository courseImageRepository) {
+    public CourseService(CourseRepository courseRepository, CourseImageRepository courseImageRepository, EnrollmentRepository enrollmentRepository) {
         this.courseRepository = courseRepository;
         this.courseImageRepository = courseImageRepository;
+        this.enrollmentRepository = enrollmentRepository;
     }
 
     public CourseResponse upload_course(CourseRequest requestData, MultipartFile imageFile) throws IOException {
@@ -105,7 +109,9 @@ public class CourseService {
         );
     }
 
+    @Transactional
     public String deleteCourseById(Long course_id){
+        enrollmentRepository.deleteByCourse_Id(course_id);
         CourseEntity entity=courseRepository.findById(course_id)
                 .orElseThrow(()->new RuntimeException("Course with id"+course_id+"does not exist"));
         courseRepository.delete(entity);

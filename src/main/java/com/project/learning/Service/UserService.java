@@ -4,6 +4,7 @@ import com.project.learning.Dto.Response.CourseResponse;
 import com.project.learning.Entity.CourseEntity;
 import com.project.learning.Repository.CourseRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class UserService {
         this.courseRepository = courseRepository;
     }
 
+    @Transactional(readOnly=true)
     public List<CourseResponse> getPublishedCourses(){
         List<CourseEntity> courses=courseRepository.findByPublishedTrue();
         return courses.stream().map(course->{

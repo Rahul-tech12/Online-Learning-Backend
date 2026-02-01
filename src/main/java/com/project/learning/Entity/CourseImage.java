@@ -14,7 +14,7 @@ public class CourseImage {
     private String contentType;
 
     @Lob
-    @Column(columnDefinition = "LONGBLOB")
+    @Column(nullable=false)
     private byte[] data;
     private Long size;
 
