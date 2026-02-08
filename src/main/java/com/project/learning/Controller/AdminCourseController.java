@@ -2,16 +2,10 @@ package com.project.learning.Controller;
 
 import com.project.learning.Dto.Request.CourseRequest;
 import com.project.learning.Dto.Response.CourseResponse;
-import com.project.learning.Entity.CourseEntity;
-import com.project.learning.Entity.CourseImage;
-import com.project.learning.Repository.CourseImageRepository;
 import com.project.learning.Service.CourseService;
-import org.hibernate.mapping.Map;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,11 +17,9 @@ import java.util.List;
 public class AdminCourseController {
 
     public CourseService courseService;
-    public CourseImageRepository courseImageRepository;
 
-    public AdminCourseController(CourseService courseService, CourseImageRepository courseImageRepository) {
+    public AdminCourseController(CourseService courseService) {
         this.courseService = courseService;
-        this.courseImageRepository = courseImageRepository;
     }
 
     @GetMapping

@@ -17,14 +17,14 @@ public class CourseEntity {
     private double price;
     private boolean published=true;
 
-    @OneToOne(mappedBy = "course", cascade=CascadeType.ALL)
-    private CourseImage image;
+    @Column(length=500)
+    private String image;
 
-    public CourseImage getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(CourseImage image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

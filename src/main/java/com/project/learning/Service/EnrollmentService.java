@@ -48,15 +48,13 @@ public class EnrollmentService {
                 .stream()
                 .map(e->{
                     CourseEntity c=e.getCourse();
-                    String imageUrl=c.getImage()!=null
-                            ? "/courses/"+c.getId()+"/image" : null;
                     return new CourseResponse(
                             c.getId(),
                             c.getTitle(),
                             c.getDescription(),
                             c.getDuration(),
                             c.getPrice(),
-                            imageUrl
+                            c.getImage()
                     );
                 }).toList();
     }

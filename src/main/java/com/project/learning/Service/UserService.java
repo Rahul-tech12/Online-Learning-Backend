@@ -21,8 +21,6 @@ public class UserService {
     public List<CourseResponse> getPublishedCourses(){
         List<CourseEntity> courses=courseRepository.findByPublishedTrue();
         return courses.stream().map(course->{
-            String imageUrl=course.getImage()!=null
-                    ?"/courses/"+course.getId()+"/image":null;
 
             return new CourseResponse(
                     course.getId(),
@@ -30,7 +28,7 @@ public class UserService {
                     course.getDescription(),
                     course.getDuration(),
                     course.getPrice(),
-                    imageUrl
+                    course.getImage()
             );
         }).toList();
     }
