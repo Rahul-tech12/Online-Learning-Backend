@@ -1,187 +1,97 @@
-📘 Online Learning Platform – Backend
+🎓 Online Learning Platform – Backend
+A robust, enterprise-ready Spring Boot backend for an E-Learning Management System. This API handles secure user authentication, complex course management, and enrollment logic with role-based access control.
 
-This repository contains the backend service for the Online Learning Platform, built using Spring Boot, Spring Security (JWT), JPA/Hibernate, and PostgreSQL.
+🛠️ Tech Stack
+Language: Java 21 (LTS)
 
-The backend is responsible for authentication, authorization, course management, enrollments, and secure communication with the frontend.
+Framework: Spring Boot 3.4
 
-🚀 Tech Stack
+Security: Spring Security & Stateless JWT Authentication
 
-Java 21
+Data Access: Spring Data JPA (Hibernate)
 
-Spring Boot
+Database: PostgreSQL (Compatible with Local & Neon.tech)
 
-Spring Security (JWT-based authentication)
+Documentation: Swagger
 
-Spring Data JPA (Hibernate)
+Build Tool: Maven
 
-PostgreSQL (Local / Neon)
+🌟 Core Features
+🔐 Security & Access Control
+Stateless Authentication: Secure login using JSON Web Tokens (JWT).
 
-Maven
+RBAC (Role-Based Access Control): * ADMIN: Full access to Course CRUD operations and user enrollment metrics.
 
-Swagger (OpenAPI)
-
-🏗️ Architecture Overview
-
-Controller Layer → REST APIs
-
-Service Layer → Business logic
-
-Repository Layer → Database access (JPA)
-
-Security Layer → JWT, role-based authorization
-
-DTO Layer → Clean API responses
-
-Entity Layer → Database models
-
-🔐 Authentication & Authorization
-
-Stateless authentication using JWT
-
-Role-based access control
-
-Supported roles:
-        ROLE_ADMIN
-        ROLE_STUDENT
-
-📦 Core Features (Implemented)
-👤 User Management
-
-User registration
-
-Login with JWT
-
-Profile retrieval & update
-
-Role-based access
+STUDENT: Access to browse courses and manage personal enrollments.
 
 📚 Course Management
+Full CRUD: Integrated APIs for creating, updating, and archiving courses.
 
-Admin can create, update, delete courses
+Enrollment Logic: Transactional safety during student course enrollment.
 
-Publish/unpublish courses
+Advanced Filtering: Optimized JPA queries for finding courses.
 
-Fetch published courses for students
+📊 System Architecture
+API Documentation: Interactive documentation using Swagger UI.
 
-🎓 Enrollment System
+Global Exception Handling: Standardized API error responses.
 
-Students can enroll in courses
+Validation: Server-side data validation using JSR-303.
 
-Prevent duplicate enrollments
+🚦 Getting Started
+Prerequisites
+JDK 21
 
-Fetch enrolled courses per user
+Maven 3.x
 
-Enrollment statistics per course (admin)
+PostgreSQL (Local or a Neon.tech connection string)
 
-🔐 Security
+⚙️ Environment Variables
+Configure the following variables in your application.properties or system environment:
 
-JWT filter
+Properties
+# Database Configuration
+DB_URL=jdbc:postgresql://<host>:5432/<db_name>
+DB_USERNAME=<your_username>
+DB_PASSWORD=<your_password>
 
-Stateless session management
+# Security Configuration
+JWT_SECRET=<your_64_character_secret_key>
+🏃 Running Locally
+Clone the repository:
 
-CORS configuration for local & production
+Bash
+git clone https://github.com/yourusername/learning-platform-backend.git
+cd learning-platform-backend
+Build and run:
 
-Protected endpoints
+Bash
+./mvnw spring-boot:run
+📖 API Documentation
+Once the application is running, you can explore and test the endpoints via Swagger UI:
 
-📄 API Documentation
+🔗 Local Docs: http://localhost:8080/swagger-ui.html
 
-Swagger UI enabled
+📂 Project Structure
+Plaintext
+src/main/java/com/project/learning/
+├── config/             # Security, JWT, and Swagger configurations
+├── controller/         # REST API Endpoints
+├── dto/                # Data Transfer Objects
+├── exception/          # Global Exception Handler & Custom Exceptions
+├── model/              # JPA Entities (User, Course, Enrollment)
+├── repository/         # Data Access Layer (Spring Data JPA)
+└── service/            # Business Logic implementation
+🗺️ Roadmap & Future Enhancements
 
-🔮 Future Features (Planned)
+[ ] Monetization: Payment gateway integration with Stripe or Razorpay.
 
-These are intentional design goals and will be added incrementally.
+[ ] User Engagement: Real-time video streaming and a review/rating system.
 
-📦 Cloud Storage
+[ ] Advanced Analytics: A dedicated Admin dashboard for enrollment trends.
 
-Store course images in Cloudinary / AWS S3
+[ ] DevOps: Full containerization with Docker and CI/CD pipelines.
 
-Signed URLs for secure access
+👤 Author:- Rahul
 
-No filesystem dependency in production
-
-💳 Payments & Monetization
-
-Course payments (Stripe / Razorpay)
-
-Payment status tracking
-
-Invoice generation
-
-🧠 Progress Tracking
-
-Track lesson completion
-
-Course progress percentage
-
-Resume from last watched lesson
-
-🎥 Video Streaming
-
-Video-based lessons
-
-Secure video access
-
-Streaming via CDN
-
-⭐ Reviews & Ratings
-
-Course reviews by students
-
-Rating aggregation
-
-Admin moderation
-
-🔔 Notifications
-
-Email notifications
-
-Enrollment confirmations
-
-Course updates
-
-📊 Admin Analytics
-
-Enrollment trends
-
-Revenue reports
-
-Active users dashboard
-
-🧩 Microservice Readiness
-
-Modular architecture
-
-Service separation readiness
-
-API versioning
-
-🐳 Docker Support
-
-Dockerized backend
-
-Docker Compose for local setup
-
-One-command startup
-
-🚀 CI/CD
-
-Automated build pipeline
-
-Environment-based deployments
-
-GitHub Actions integration
-
-🧠 Design Philosophy
-
-Clean layered architecture
-
-Environment-driven configuration
-
-Production-first mindset
-
-Security by default
-
-Scalability-ready
-ROLE_ADMIN
-
-ROLE_STUDENT
+LinkedIn: https://www.linkedin.com/in/rahul-tech-12esdsd/
