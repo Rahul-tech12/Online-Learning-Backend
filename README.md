@@ -1,97 +1,135 @@
-🎓 Online Learning Platform – Backend
-A robust, enterprise-ready Spring Boot backend for an E-Learning Management System. This API handles secure user authentication, complex course management, and enrollment logic with role-based access control.
+# 🎓 Online-Learning-Backend
 
-🛠️ Tech Stack
-Language: Java 21 (LTS)
+<div align="center">
 
-Framework: Spring Boot 3.4
+[![GitHub stars](https://img.shields.io/github/stars/Rahul-tech12/Online-Learning-Backend?style=for-the-badge)](https://github.com/Rahul-tech12/Online-Learning-Backend/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Rahul-tech12/Online-Learning-Backend?style=for-the-badge)](https://github.com/Rahul-tech12/Online-Learning-Backend/network)
+[![GitHub issues](https://img.shields.io/github/issues/Rahul-tech12/Online-Learning-Backend?style=for-the-badge)](https://github.com/Rahul-tech12/Online-Learning-Backend/issues)
+[![GitHub license](https://img.shields.io/github/license/Rahul-tech12/Online-Learning-Backend?style=for-the-badge)](LICENSE)
 
-Security: Spring Security & Stateless JWT Authentication
+**Robust and scalable backend services for an online learning platform.**
 
-Data Access: Spring Data JPA (Hibernate)
+</div>
 
-Database: PostgreSQL (Compatible with Local & Neon.tech)
+## 📖 Overview
 
-Documentation: Swagger
+This repository hosts the backend service for an online learning platform, built with Java and the Spring Boot framework. It provides a comprehensive set of RESTful APIs to manage courses, users, enrollments.
 
-Build Tool: Maven
+## ✨ Features
 
-🌟 Core Features
-🔐 Security & Access Control
-Stateless Authentication: Secure login using JSON Web Tokens (JWT).
+-   🎯 **RESTful API Design**: Well-structured and intuitive API endpoints for all core functionalities.
+-   🔐 **JWT Authentication & Authorization**: Secure user access and role-based permissions using JSON Web Tokens and Spring Security.
+-   🗄️ **Data Persistence**: Efficient data storage and retrieval using PostgreSQL with Spring Data JPA.
+-   ✅ **Input Validation**: Robust validation mechanisms to ensure data integrity and prevent common vulnerabilities.
+-   📝 **API Documentation**: Automated, interactive API documentation provided by OpenAPI (Swagger UI) for easy API exploration and integration.
+-   🔄 **Database Migrations**: Handles database schema evolution using Hibernate's DDL capabilities.
 
-RBAC (Role-Based Access Control): * ADMIN: Full access to Course CRUD operations and user enrollment metrics.
+## 🛠️ Tech Stack
 
-STUDENT: Access to browse courses and manage personal enrollments.
+**Backend:**
+[![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com/)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-boot)
+[![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-security)
+[![Spring Data JPA](https://img.shields.io/badge/Spring_Data_JPA-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-data-jpa)
+[![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white)](https://jwt.io/)
+[![Maven](https://img.shields.io/badge/Apache_Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white)](https://maven.apache.org/)
 
-📚 Course Management
-Full CRUD: Integrated APIs for creating, updating, and archiving courses.
+**Database:**
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 
-Enrollment Logic: Transactional safety during student course enrollment.
+## 📁 Project Structure
 
-Advanced Filtering: Optimized JPA queries for finding courses.
+```
+Online-Learning-Backend/
+├── .mvn/                  # Maven Wrapper files
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── onlinelearning/  # Main application source code
+│   │   │           ├── OnlineLearningBackendApplication.java  # Main Spring Boot application class
+│   │   │           ├── config/      # Spring Security, JWT, CORS configurations
+│   │   │           ├── controller/  # REST API endpoints
+│   │   │           ├── model/       # JPA Entities / Database Models
+│   │   │           ├── repository/  # Spring Data JPA Repositories
+│   │   │           └── service/     # Business logic and services
+│   │   └── resources/     # Application resources (e.g., application.properties)
+│   └── test/
+│       └── java/          # Test source code
+├── Docker                 # Dockerfile for containerization
+├── LICENSE                # Project license file
+├── mvnw                   # Maven Wrapper script (Linux/macOS)
+├── mvnw.cmd               # Maven Wrapper script (Windows)
+└── pom.xml                # Maven project configuration
+```
 
-📊 System Architecture
-API Documentation: Interactive documentation using Swagger UI.
+## ⚙️ Configuration
 
-Global Exception Handling: Standardized API error responses.
+### Environment Variables & Application Properties
+Key application settings are managed through `application.properties` (or `application.yml`) in `src/main/resources`.
 
-Validation: Server-side data validation using JSR-303.
+| Property                  | Description                                    | Example Value                                  | Required |
+| :------------------------ | :--------------------------------------------- | :--------------------------------------------- | :------- |
+| `server.port`             | Port for the API server                        | `8080`                                         | Yes      |
+| `spring.datasource.url`   | JDBC URL for the MySQL database                | `jdbc:mysql://localhost:3306/online_learning_db` | Yes      |
+| `spring.datasource.username` | Username for database access                 | `online_user`                                  | Yes      |
+| `spring.datasource.password` | Password for database access                 | `your_password`                                | Yes      |
+| `jwt.secret`              | Secret key for signing and verifying JWTs      | `YourSuperSecretKey...`                        | Yes      |
+| `jwt.expiration`          | Expiration time for JWTs in milliseconds       | `86400000` (24 hours)                          | Yes      |
+| `spring.jpa.hibernate.ddl-auto` | Hibernate DDL generation strategy          | `update`                                       | Yes      |
 
-🚦 Getting Started
-Prerequisites
-JDK 21
+### Configuration Files
+-   `pom.xml`: Defines project dependencies, build plugins, and project metadata for Maven.
+-   `src/main/resources/application.properties`: Primary configuration file for Spring Boot.
 
-Maven 3.x
+## 🔧 Development
 
-PostgreSQL (Local or a Neon.tech connection string)
+### Building
+To compile and package the application into an executable JAR file:
+```bash
+./mvnw clean package
+```
+The executable JAR will be located in the `target/` directory.
 
-⚙️ Environment Variables
-Configure the following variables in your application.properties or system environment:
+### Running Tests
+To execute all unit and integration tests:
+```bash
+./mvnw test
+```
 
-Properties
-# Database Configuration
-DB_URL=jdbc:postgresql://<host>:5432/<db_name>
-DB_USERNAME=<your_username>
-DB_PASSWORD=<your_password>
+## 📚 API Reference
 
-# Security Configuration
-JWT_SECRET=<your_64_character_secret_key>
-🏃 Running Locally
-Clone the repository:
+The API endpoints are fully documented using OpenAPI (Swagger UI). Once the application is running, you can access the interactive documentation at:
 
-Bash
-git clone https://github.com/yourusername/learning-platform-backend.git
-cd learning-platform-backend
-Build and run:
+`http://localhost:8080/swagger-ui.html`
 
-Bash
-./mvnw spring-boot:run
-📖 API Documentation
-Once the application is running, you can explore and test the endpoints via Swagger UI:
+### Authentication
+This API uses **JWT (JSON Web Token)** for authentication.
+1.  Users typically register or log in to receive a JWT.
+2.  This token must be included in the `Authorization` header of subsequent requests as a Bearer token:
+    `Authorization: Bearer <your_jwt_token>`
 
-🔗 Local Docs: http://localhost:8080/swagger-ui.html
+### Example Endpoints
+(Please refer to the Swagger UI for a complete and up-to-date list of endpoints, schemas, and example requests.)
 
-📂 Project Structure
-Plaintext
-src/main/java/com/project/learning/
-├── config/             # Security, JWT, and Swagger configurations
-├── controller/         # REST API Endpoints
-├── dto/                # Data Transfer Objects
-├── exception/          # Global Exception Handler & Custom Exceptions
-├── model/              # JPA Entities (User, Course, Enrollment)
-├── repository/         # Data Access Layer (Spring Data JPA)
-└── service/            # Business Logic implementation
-🗺️ Roadmap & Future Enhancements
+-   **User Management:**
+    -   `POST /api/auth/register`: Register a new user.
+    -   `POST /api/auth/login`: Authenticate and receive a JWT.
+    -   `GET /api/users/{id}`: Retrieve user details (requires authentication).
 
-[ ] Monetization: Payment gateway integration with Stripe or Razorpay.
+-   **Course Management:**
+    -   `GET /api/courses`: Retrieve a list of all courses.
+    -   `POST /api/courses`: Create a new course (requires admin/instructor role).
+    -   `GET /api/courses/{id}`: Retrieve details of a specific course.
 
-[ ] User Engagement: Real-time video streaming and a review/rating system.
+-   **Enrollment:**
+    -   `POST /api/enrollments`: Enroll a user in a course (requires authentication).
+    -   `GET /api/users/{userId}/enrollments`: View a user's enrolled courses.
 
-[ ] Advanced Analytics: A dedicated Admin dashboard for enrollment trends.
+<div align="center">
 
-[ ] DevOps: Full containerization with Docker and CI/CD pipelines.
+**⭐ Star this repo if you find it helpful!**
 
-👤 Author:- Rahul
+Made with ❤️ by Rahul-tech12
 
-LinkedIn: https://www.linkedin.com/in/rahul-tech-12esdsd/
+</div>
